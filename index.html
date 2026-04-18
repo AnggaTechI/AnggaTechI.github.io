@@ -1,1 +1,882 @@
-hai
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AnggaTechI | Python Developer, Web Automation & Security Tooling</title>
+  <meta name="description" content="AnggaTechI is a personal developer profile focused on Python, web automation, open-source utilities, and security tooling projects." />
+  <meta name="keywords" content="AnggaTechI, Python Developer, Web Automation, Security Tooling, GitHub, Open Source, Developer Portfolio" />
+  <meta name="author" content="AnggaTechI" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="canonical" href="https://AnggaTechI.github.io/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AnggaTechI | Python Developer, Web Automation & Security Tooling" />
+  <meta property="og:description" content="Personal landing page for AnggaTechI featuring GitHub projects, automation work, and developer branding." />
+  <meta property="og:url" content="https://AnggaTechI.github.io/" />
+  <meta property="og:site_name" content="AnggaTechI" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AnggaTechI | Python Developer, Web Automation & Security Tooling" />
+  <meta name="twitter:description" content="Explore AnggaTechI projects, GitHub repositories, and developer profile." />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"AnggaTechI",
+    "url":"https://AnggaTechI.github.io/",
+    "sameAs":[
+      "https://github.com/AnggaTechI"
+    ],
+    "jobTitle":"Developer",
+    "description":"Python developer focused on web automation, open-source utilities, and security tooling."
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg2:#0d1a2f;
+      --card:rgba(255,255,255,0.08);
+      --line:rgba(255,255,255,0.12);
+      --text:#eaf2ff;
+      --muted:#9fb2d4;
+      --accent:#61dafb;
+      --accent2:#8b5cf6;
+      --glow:0 0 40px rgba(97,218,251,.18);
+      --radius:24px;
+      --maxw:1150px;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(97,218,251,.12), transparent 24%),
+        radial-gradient(circle at 80% 30%, rgba(139,92,246,.10), transparent 22%),
+        radial-gradient(circle at 50% 80%, rgba(0,255,170,.07), transparent 20%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x:hidden;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .bg-grid{
+      position:fixed;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size:40px 40px;
+      mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+      pointer-events:none;
+      z-index:0;
+      animation:gridMove 16s linear infinite;
+    }
+
+    .orb{
+      position:fixed;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      filter:blur(80px);
+      opacity:.18;
+      pointer-events:none;
+      z-index:0;
+      animation:floatOrb 12s ease-in-out infinite;
+    }
+
+    .orb.one{
+      top:-80px;
+      left:-80px;
+      background:#61dafb;
+    }
+
+    .orb.two{
+      bottom:-100px;
+      right:-80px;
+      background:#8b5cf6;
+      animation-delay:-4s;
+    }
+
+    .orb.three{
+      top:35%;
+      left:55%;
+      width:300px;
+      height:300px;
+      background:#00ffaa;
+      animation-delay:-7s;
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      width:min(var(--maxw), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:30;
+      backdrop-filter: blur(12px);
+      background:rgba(7,17,31,.55);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .nav{
+      width:min(var(--maxw), calc(100% - 32px));
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:16px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      letter-spacing:.3px;
+    }
+
+    .brand-dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow:0 0 20px rgba(97,218,251,.7);
+      animation:pulse 2.2s infinite;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav-links a{
+      color:var(--muted);
+      font-size:.95rem;
+      transition:.25s ease;
+    }
+
+    .nav-links a:hover{
+      color:var(--text);
+      transform:translateY(-1px);
+    }
+
+    .hero{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns:1.25fr .95fr;
+      gap:28px;
+      align-items:center;
+      padding:72px 0 40px;
+    }
+
+    .hero-left{
+      animation:fadeUp .9s ease both;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      color:#cde2ff;
+      font-size:.92rem;
+      margin-bottom:22px;
+      box-shadow:var(--glow);
+    }
+
+    .eyebrow span{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#00ffaa;
+      box-shadow:0 0 12px #00ffaa;
+      animation:pulse 1.8s infinite;
+    }
+
+    h1{
+      font-size:clamp(2.6rem, 6vw, 5.4rem);
+      line-height:1.02;
+      letter-spacing:-.03em;
+      margin-bottom:18px;
+    }
+
+    .gradient-text{
+      background:linear-gradient(90deg, #ffffff, #9adfff, #b5a2ff, #ffffff);
+      background-size:200% auto;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      animation:textShift 6s linear infinite;
+    }
+
+    .lead{
+      color:var(--muted);
+      font-size:1.08rem;
+      line-height:1.85;
+      max-width:760px;
+      margin-bottom:28px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:50px;
+      padding:0 22px;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-weight:700;
+      transition:.28s ease;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#08111d;
+      box-shadow:0 12px 35px rgba(97,218,251,.22);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px) scale(1.01);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      border-color:var(--line);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.085);
+      transform:translateY(-2px);
+    }
+
+    .hero-tags{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .tag{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      color:#d8e6ff;
+      font-size:.92rem;
+      transition:.25s ease;
+    }
+
+    .tag:hover{
+      transform:translateY(-3px);
+      border-color:rgba(97,218,251,.5);
+      box-shadow:0 8px 24px rgba(97,218,251,.12);
+    }
+
+    .hero-right{
+      animation:fadeUp 1.15s ease both;
+    }
+
+    .glass-card{
+      position:relative;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      border-radius:var(--radius);
+      padding:22px;
+      backdrop-filter:blur(16px);
+      box-shadow:
+        0 10px 40px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.05);
+      overflow:hidden;
+    }
+
+    .glass-card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:linear-gradient(135deg, rgba(97,218,251,.20), transparent, rgba(139,92,246,.20));
+      opacity:.5;
+      pointer-events:none;
+    }
+
+    .terminal{
+      position:relative;
+      min-height:420px;
+    }
+
+    .terminal-top{
+      display:flex;
+      gap:8px;
+      margin-bottom:18px;
+    }
+
+    .terminal-top i{
+      display:block;
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      opacity:.9;
+    }
+
+    .terminal-top i:nth-child(1){background:#ff5f56;}
+    .terminal-top i:nth-child(2){background:#ffbd2e;}
+    .terminal-top i:nth-child(3){background:#27c93f;}
+
+    .terminal pre{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space:pre-wrap;
+      color:#dcf2ff;
+      line-height:1.8;
+      font-size:.95rem;
+      position:relative;
+      z-index:2;
+    }
+
+    .cursor{
+      display:inline-block;
+      width:10px;
+      height:1.15em;
+      background:#7ee8ff;
+      vertical-align:middle;
+      animation:blink 1s infinite;
+      margin-left:4px;
+    }
+
+    section{
+      padding:36px 0;
+    }
+
+    .section-title{
+      font-size:clamp(1.8rem, 4vw, 3rem);
+      margin-bottom:12px;
+      letter-spacing:-.03em;
+    }
+
+    .section-text{
+      color:var(--muted);
+      line-height:1.8;
+      max-width:760px;
+      margin-bottom:28px;
+    }
+
+    .grid{
+      display:grid;
+      gap:20px;
+    }
+
+    .grid-3{
+      grid-template-columns:repeat(3, 1fr);
+    }
+
+    .grid-2{
+      grid-template-columns:repeat(2, 1fr);
+    }
+
+    .card{
+      position:relative;
+      padding:24px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      border-radius:22px;
+      overflow:hidden;
+      transition:.35s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+      border-color:rgba(97,218,251,.36);
+      box-shadow:0 20px 40px rgba(0,0,0,.18);
+    }
+
+    .card h3{
+      font-size:1.15rem;
+      margin-bottom:12px;
+    }
+
+    .card p{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:.97rem;
+    }
+
+    .mini-label{
+      display:inline-block;
+      font-size:.78rem;
+      color:#8fdcff;
+      margin-bottom:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .repo-list{
+      display:grid;
+      gap:16px;
+    }
+
+    .repo-item{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:flex-start;
+      padding:20px;
+      border-radius:20px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      transition:.3s ease;
+    }
+
+    .repo-item:hover{
+      transform:translateY(-4px);
+      border-color:rgba(139,92,246,.35);
+    }
+
+    .repo-item h3{
+      margin-bottom:8px;
+      font-size:1.1rem;
+    }
+
+    .repo-item p{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:.96rem;
+      max-width:760px;
+    }
+
+    .repo-badge{
+      white-space:nowrap;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(97,218,251,.1);
+      border:1px solid rgba(97,218,251,.22);
+      color:#bfeeff;
+      font-size:.84rem;
+      font-weight:700;
+    }
+
+    .cta{
+      text-align:center;
+      padding:56px 24px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius:28px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .cta p{
+      color:var(--muted);
+      max-width:760px;
+      margin:14px auto 24px;
+      line-height:1.8;
+    }
+
+    footer{
+      padding:28px 0 40px;
+      color:#8fa5c8;
+      text-align:center;
+      font-size:.94rem;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .75s ease, transform .75s ease;
+    }
+
+    .reveal.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes pulse{
+      0%,100%{transform:scale(1); opacity:1;}
+      50%{transform:scale(1.25); opacity:.8;}
+    }
+
+    @keyframes blink{
+      0%,49%{opacity:1;}
+      50%,100%{opacity:0;}
+    }
+
+    @keyframes floatOrb{
+      0%,100%{transform:translate(0,0) scale(1);}
+      50%{transform:translate(20px,-30px) scale(1.08);}
+    }
+
+    @keyframes gridMove{
+      from{transform:translateY(0);}
+      to{transform:translateY(40px);}
+    }
+
+    @keyframes textShift{
+      0%{background-position:0% center;}
+      100%{background-position:200% center;}
+    }
+
+    @media (max-width: 980px){
+      .hero{
+        grid-template-columns:1fr;
+        min-height:auto;
+        padding-top:48px;
+      }
+
+      .grid-3,
+      .grid-2{
+        grid-template-columns:1fr;
+      }
+
+      .repo-item{
+        flex-direction:column;
+      }
+
+      .nav{
+        gap:18px;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+
+    @media (max-width: 640px){
+      h1{
+        font-size:2.3rem;
+      }
+
+      .lead{
+        font-size:1rem;
+      }
+
+      .terminal{
+        min-height:360px;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+
+  <header>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#home" class="brand" aria-label="AnggaTechI Home">
+        <span class="brand-dot"></span>
+        <span>AnggaTechI</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#focus">Focus</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="wrap hero" id="home">
+      <div class="hero-left">
+        <div class="eyebrow">
+          <span></span>
+          Open-source developer profile
+        </div>
+
+        <h1>
+          Build better tools with
+          <span class="gradient-text">clean code, motion, and identity.</span>
+        </h1>
+
+        <p class="lead">
+          AnggaTechI is a personal developer landing page focused on Python development,
+          web automation, open-source utilities, and security tooling. This website is built
+          as a simple public profile to make the AnggaTechI identity easier to discover,
+          browse, and connect with online.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://github.com/AnggaTechI" target="_blank" rel="noopener noreferrer">
+            Visit GitHub
+          </a>
+          <a class="btn btn-secondary" href="#projects">
+            Explore Projects
+          </a>
+        </div>
+
+        <div class="hero-tags" aria-label="Core topics">
+          <span class="tag">Python</span>
+          <span class="tag">Web Automation</span>
+          <span class="tag">Open Source</span>
+          <span class="tag">Developer Branding</span>
+          <span class="tag">Security Tooling</span>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div class="glass-card terminal" aria-label="Animated developer terminal">
+          <div class="terminal-top" aria-hidden="true">
+            <i></i><i></i><i></i>
+          </div>
+          <pre id="typingText"></pre><span class="cursor"></span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="wrap reveal" id="about">
+      <h2 class="section-title">About AnggaTechI</h2>
+      <p class="section-text">
+        This site is designed as a lightweight personal landing page for the AnggaTechI brand.
+        It helps search engines and visitors understand who AnggaTechI is, what topics are being worked on,
+        and where to find the main public projects. The content is intentionally clear, text-rich,
+        and structured so it remains readable for both users and indexing systems.
+      </p>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <span class="mini-label">Identity</span>
+          <h3>Clear Personal Branding</h3>
+          <p>
+            The page repeatedly connects the name AnggaTechI with developer work,
+            GitHub projects, Python, and web automation to make the identity easier to recognize.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="mini-label">Structure</span>
+          <h3>SEO-Friendly Layout</h3>
+          <p>
+            The content uses semantic sections, headings, meta description, canonical URL,
+            and structured data to support search engine understanding.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="mini-label">Motion</span>
+          <h3>Modern Visual Feel</h3>
+          <p>
+            Animated gradients, floating lights, reveal effects, and terminal typing make the page
+            feel more alive without being too heavy.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap reveal" id="focus">
+      <h2 class="section-title">Core Focus</h2>
+      <p class="section-text">
+        AnggaTechI is presented as a developer profile centered around practical tooling,
+        automation workflows, and lightweight project building for the web.
+      </p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <span class="mini-label">Development</span>
+          <h3>Python and Utility Projects</h3>
+          <p>
+            Fast scripts, CLI tooling, automation helpers, and efficient project structures
+            are part of the main profile direction.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="mini-label">Engineering</span>
+          <h3>Web Automation and Workflow Design</h3>
+          <p>
+            Building repeatable processes, clean interfaces, and functional lightweight tools
+            is a recurring theme connected to the AnggaTechI name.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="mini-label">Open Source</span>
+          <h3>Public GitHub Presence</h3>
+          <p>
+            The GitHub profile acts as the main public hub for projects, repositories,
+            experiments, and visible technical activity.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="mini-label">Visibility</span>
+          <h3>Search Discoverability</h3>
+          <p>
+            This page exists partly to make AnggaTechI easier to search, index, and associate
+            with the correct GitHub identity.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap reveal" id="projects">
+      <h2 class="section-title">Highlighted Projects</h2>
+      <p class="section-text">
+        These are example public project categories associated with AnggaTechI.
+        You can adjust the descriptions below anytime to match your newest repositories.
+      </p>
+
+      <div class="repo-list">
+        <article class="repo-item">
+          <div>
+            <h3>Domain-Grabber-AI</h3>
+            <p>
+              An AI-assisted command-line project concept for collecting and organizing domain discovery results,
+              built with a focus on workflow speed, filtering, and practical output handling.
+            </p>
+          </div>
+          <span class="repo-badge">CLI / Automation</span>
+        </article>
+
+        <article class="repo-item">
+          <div>
+            <h3>AssistenWA</h3>
+            <p>
+              A messaging automation project category that represents interest in bot development,
+              command handling, and lightweight interaction design for practical use cases.
+            </p>
+          </div>
+          <span class="repo-badge">Bot / Node.js</span>
+        </article>
+
+        <article class="repo-item">
+          <div>
+            <h3>one-filemanager-php</h3>
+            <p>
+              A lightweight browser-based file utility concept that reflects a preference for portable,
+              single-file tools that are easy to deploy and simple to use.
+            </p>
+          </div>
+          <span class="repo-badge">PHP / Utility</span>
+        </article>
+
+        <article class="repo-item">
+          <div>
+            <h3>wordpress-scanner</h3>
+            <p>
+              A project theme focused on fast platform detection and bulk processing,
+              showing interest in asynchronous scanning logic and structured result handling.
+            </p>
+          </div>
+          <span class="repo-badge">Python / Async</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap reveal" id="contact">
+      <div class="cta">
+        <h2 class="section-title">Find the main profile</h2>
+        <p>
+          The primary public destination for AnggaTechI is the GitHub profile.
+          If you searched for this name and landed here, use the button below to open the main account.
+        </p>
+        <a class="btn btn-primary" href="https://github.com/AnggaTechI" target="_blank" rel="noopener noreferrer">
+          Open GitHub Profile
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      © <span id="year"></span> AnggaTechI • Built with HTML, CSS, and JavaScript • Hosted on GitHub Pages
+    </div>
+  </footer>
+
+  <script>
+    const text = [
+      "> whoami",
+      "AnggaTechI",
+      "",
+      "> focus",
+      "Python Developer",
+      "Web Automation",
+      "Open-Source Utilities",
+      "Security Tooling",
+      "",
+      "> profile",
+      "github.com/AnggaTechI",
+      "",
+      "> status",
+      "Building modern developer identity..."
+    ].join("\n");
+
+    const typingText = document.getElementById("typingText");
+    let i = 0;
+
+    function typeWriter() {
+      if (i < text.length) {
+        typingText.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 26);
+      }
+    }
+
+    typeWriter();
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
